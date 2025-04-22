@@ -1,0 +1,68 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
+<asp:HyperLink runat="server"  />
+<asp:TextBox runat="server" Font-Size="1em" ForeColor="White" BackColor="#404040" BorderStyle="Solid"/>
+<asp:Button runat="server" Font-Size="1em" ForeColor="White" 
+    BackColor="#4361EE" BorderStyle="None" CssClass="padded-button" />
+<asp:DropDownList runat="server" Font-Size="1em" ForeColor="White" BackColor="#404040"/>
+<asp:Chart runat="server" Width="700" Height="350" ImageStorageMode="UseImageLocation" BackColor="Transparent">
+<ChartAreas>
+    <asp:ChartArea Name="ChartArea1" BackColor="#222222" >
+        <AxisX TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+            <LabelStyle ForeColor="LightGray" Format="MM/dd"/>
+        </AxisX>
+        <AxisY IsStartedFromZero="false" TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+            <LabelStyle ForeColor="LightGray" Format="C2"/>
+        </AxisY>
+        <AxisY2 IsStartedFromZero="false" TitleForeColor="White" Enabled="Auto"  TitleFont="Calibri, 12pt, style=Bold">
+            <LabelStyle ForeColor="LightGray" Format="C2"/>
+        </AxisY2>    
+    </asp:ChartArea>
+</ChartAreas>
+</asp:Chart>
+<asp:Chart runat="server" SkinId="Large" Width="700" Height="350" ImageStorageMode="UseImageLocation" BackColor="Transparent">
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1" BackColor="#222222" >
+            <AxisX TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="MM/dd"/>
+            </AxisX>
+            <AxisY IsStartedFromZero="false" TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="C2"/>
+            </AxisY>
+            <AxisY2 IsStartedFromZero="false" TitleForeColor="White" Enabled="Auto"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="C2"/>
+            </AxisY2>  
+        </asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+<asp:Chart runat="server" SkinId="Numerical" ImageStorageMode="UseImageLocation" BackColor="Transparent" TextAntiAliasingQuality="High">
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1"  BackColor="#222222" >
+            <AxisX TitleForeColor="White" TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray"/>
+            </AxisX>
+            <AxisY IsStartedFromZero="false" TitleFont="Calibri, 12pt, style=Bold" TitleForeColor="White">
+                <LabelStyle ForeColor="LightGray" Format="C2"/>
+            </AxisY>
+            <AxisY2 IsStartedFromZero="false" TitleForeColor="White"
+                     TitleFont="Calibri, 12pt, style=Bold" Enabled="Auto">
+                <LabelStyle ForeColor="LightGray" Format="C4" />
+            </AxisY2>  
+        </asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>

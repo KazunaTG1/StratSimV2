@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="StratSimV2.Master" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        body {
+            font-family: Calibri;
+            font-size: 1.1em;
+            background-color: #111111;
+            color: white;
+        }
+        td {
+            vertical-align:top;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            text-align:center;
+        }
+        .padded-button{
+            padding:.4em .4em;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:SiteMapDataSource ID="dsMap" runat="server" ShowStartingNode="false" />
+            <asp:Menu runat="server" ID="mainMenu" DataSourceID="dsMap" Orientation="Horizontal" BackColor="#6E44FF" Width="100%">
+                <StaticMenuItemStyle ForeColor="#EFD9CE" Font-Size="1.1em" HorizontalPadding=".5em" VerticalPadding=".3em" Font-Bold="true"/>
+                <DynamicMenuItemStyle ForeColor="Black" Font-Size="1.1em" HorizontalPadding=".5em" VerticalPadding=".3em" Font-Bold="true" BackColor="#B892FF" />
+                <DynamicSelectedStyle Font-Underline="true" />
+                <StaticSelectedStyle Font-Underline="true" />
+            </asp:Menu>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel runat="server" ID="pnlUpdate">
+                <ContentTemplate>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <br /><br /><br />
+            <hr />
+            <small>Made by Peyton Price</small>
+        </div>
+    </form>
+</body>
+</html>
