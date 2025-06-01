@@ -60,22 +60,22 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.RequiredFieldValidator reqExpiry;
 
 		/// <summary>
-		/// tbStrike control.
+		/// tbDTE control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox tbStrike;
+		protected global::System.Web.UI.WebControls.TextBox tbDTE;
 
 		/// <summary>
-		/// reqStrike control.
+		/// reqDTE control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.RequiredFieldValidator reqStrike;
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDTE;
 
 		/// <summary>
 		/// tbStockPrice control.
@@ -94,6 +94,42 @@ namespace StratSimV2
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.RequiredFieldValidator reqStockPrice;
+
+		/// <summary>
+		/// tbStrike control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox tbStrike;
+
+		/// <summary>
+		/// reqStrike control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator reqStrike;
+
+		/// <summary>
+		/// tbMoneyness control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox tbMoneyness;
+
+		/// <summary>
+		/// reqMoneyness control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator reqMoneyness;
 
 		/// <summary>
 		/// tbIV control.

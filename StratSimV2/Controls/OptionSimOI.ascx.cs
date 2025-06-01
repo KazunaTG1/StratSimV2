@@ -1,4 +1,5 @@
-﻿using QFin.Models.OptionPricing;
+﻿using QFin.MarketData.Transformations;
+using QFin.Models.OptionPricing;
 using QFin.Securities;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,25 @@ namespace StratSimV2.Controls
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			if (!IsPostBack)
+			{
+				ddlInterval.DataSource = Enum.GetNames(typeof(Interval));
+				ddlInterval.DataBind();
+				ddlInterval.SelectedIndex = 1;
+			}
 		}
+		public bool UseInterval
+		{
+			get
+			{
+				return rowInterval.Visible;
+			}
+			set
+			{
+					rowInterval.Visible = value;
+			}
+		}
+		public Interval Interval => (Interval)ddlInterval.SelectedIndex;
 		public double Quantity
 		{
 			get

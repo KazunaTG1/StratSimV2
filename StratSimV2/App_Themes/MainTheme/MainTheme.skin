@@ -15,16 +15,18 @@ Default skin template. The following skins are provided as examples only.
 --%>
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
+
 <asp:HyperLink runat="server"  />
 <asp:TextBox runat="server" Font-Size="1em" ForeColor="White" BackColor="#404040" BorderStyle="Solid"/>
 <asp:Button runat="server" Font-Size="1em" ForeColor="White" 
     BackColor="#4361EE" BorderStyle="None" CssClass="padded-button" />
+<asp:ListBox runat="server" BackColor="#404040" BorderStyle="Solid" ForeColor="White"/>
 <asp:DropDownList runat="server" Font-Size="1em" ForeColor="White" BackColor="#404040"/>
 <asp:Chart runat="server" Width="700" Height="350" ImageStorageMode="UseImageLocation" BackColor="Transparent">
 <ChartAreas>
-    <asp:ChartArea Name="ChartArea1" BackColor="#222222" >
+    <asp:ChartArea Name="ChartArea1" BackColor="#202020" >
         <AxisX TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
-            <LabelStyle ForeColor="LightGray" Format="MM/dd"/>
+            <LabelStyle ForeColor="LightGray" Format="MM/dd/yyyy"/>
         </AxisX>
         <AxisY IsStartedFromZero="false" TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
             <LabelStyle ForeColor="LightGray" Format="C2"/>
@@ -35,11 +37,41 @@ Default skin template. The following skins are provided as examples only.
     </asp:ChartArea>
 </ChartAreas>
 </asp:Chart>
-<asp:Chart runat="server" SkinId="Large" Width="700" Height="350" ImageStorageMode="UseImageLocation" BackColor="Transparent">
+<asp:Chart runat="server" SkinId="Large" Width="1300" Height="600" ImageStorageMode="UseImageLocation" BackColor="Transparent">
     <ChartAreas>
-        <asp:ChartArea Name="ChartArea1" BackColor="#222222" >
+        <asp:ChartArea Name="ChartArea1" BackColor="#202020" >
             <AxisX TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
-                <LabelStyle ForeColor="LightGray" Format="MM/dd"/>
+                <LabelStyle ForeColor="LightGray" Format="MM/dd/yyyy"/>
+            </AxisX>
+            <AxisY IsStartedFromZero="false" TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="C2"/>
+            </AxisY>
+            <AxisY2 IsStartedFromZero="false" TitleForeColor="White" Enabled="Auto"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="C2"/>
+            </AxisY2>  
+        </asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+<asp:Chart runat="server" SkinId="Histogram" Width="1300" Height="300" ImageStorageMode="UseImageLocation" BackColor="Transparent">
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1" BackColor="#202020" >
+            <AxisX TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="MM/dd/yyyy"/>
+            </AxisX>
+            <AxisY IsStartedFromZero="false" TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="C2"/>
+            </AxisY>
+            <AxisY2 IsStartedFromZero="false" TitleForeColor="White" Enabled="Auto"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="C2"/>
+            </AxisY2>  
+        </asp:ChartArea>
+    </ChartAreas>
+</asp:Chart>
+<asp:Chart runat="server" SkinId="Bar" Width="1300" Height="400" ImageStorageMode="UseImageLocation" BackColor="Transparent">
+    <ChartAreas>
+        <asp:ChartArea Name="ChartArea1" BackColor="#202020" >
+            <AxisX TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
+                <LabelStyle ForeColor="LightGray" Format="MM/dd/yyyy"/>
             </AxisX>
             <AxisY IsStartedFromZero="false" TitleForeColor="White"  TitleFont="Calibri, 12pt, style=Bold">
                 <LabelStyle ForeColor="LightGray" Format="C2"/>
@@ -52,7 +84,7 @@ Default skin template. The following skins are provided as examples only.
 </asp:Chart>
 <asp:Chart runat="server" SkinId="Numerical" ImageStorageMode="UseImageLocation" BackColor="Transparent" TextAntiAliasingQuality="High">
     <ChartAreas>
-        <asp:ChartArea Name="ChartArea1"  BackColor="#222222" >
+        <asp:ChartArea Name="ChartArea1"  BackColor="#202020" >
             <AxisX TitleForeColor="White" TitleFont="Calibri, 12pt, style=Bold">
                 <LabelStyle ForeColor="LightGray"/>
             </AxisX>
@@ -66,3 +98,87 @@ Default skin template. The following skins are provided as examples only.
         </asp:ChartArea>
     </ChartAreas>
 </asp:Chart>
+<asp:GridView 
+    runat="server" 
+    GridLines="None" 
+    AutoGenerateColumns="false" 
+    AllowPaging="true" 
+    AllowSorting="true" 
+    CellPadding="6" 
+    PageSize="20">
+    <SortedAscendingHeaderStyle ForeColor="White" />
+    <SortedDescendingHeaderStyle ForeColor="White"   />
+    <SelectedRowStyle BackColor="#505050" Font-Bold="true"/>
+    <HeaderStyle BackColor="Crimson" Font-Bold="true" />
+    <RowStyle HorizontalAlign="Center" />
+    <AlternatingRowStyle BackColor="#151515" />
+    <PagerStyle ForeColor="Wheat" Font-Bold="true" />
+</asp:GridView>
+<asp:GridView SkinID="StockPaths"
+    runat="server"
+    GridLines="None" 
+    AutoGenerateColumns="false" 
+    AllowPaging="true" 
+    AllowSorting="true" 
+    CellPadding="6" 
+    PageSize="20"
+    AutoGenerateSelectButton="true">
+    <SortedAscendingHeaderStyle ForeColor="White" />
+    <SortedDescendingHeaderStyle ForeColor="White"   />
+    <SelectedRowStyle BackColor="#505050" Font-Bold="true"/>
+    <HeaderStyle BackColor="Crimson" Font-Bold="true" />
+    <RowStyle HorizontalAlign="Center" />
+    <AlternatingRowStyle BackColor="#151515" />
+    <PagerStyle ForeColor="Wheat" Font-Bold="true" />
+    <Columns>
+        <asp:BoundField DataField="StartDate" 
+            HeaderText="Start Date" DataFormatString="{0:d}" SortExpression="StartDate"  />
+        <asp:BoundField DataField="StartPrice" 
+            HeaderText="Start" DataFormatString="{0:C2}" SortExpression="StartPrice" />
+        <asp:BoundField DataField="EndDate" 
+            HeaderText="End Date" DataFormatString="{0:d}" SortExpression="EndDate" />
+        <asp:BoundField DataField="EndPrice" 
+            HeaderText="End" DataFormatString="{0:C2}" SortExpression="EndPrice" />
+        <asp:BoundField DataField="Change" 
+            HeaderText="Change" DataFormatString="{0:C2}" SortExpression="Change" />
+        <asp:BoundField DataField="ChangePercent" 
+            HeaderText="Change Percent" DataFormatString="{0:P2}" SortExpression="ChangePercent"/>
+        <asp:BoundField DataField="Max" 
+            HeaderText="Max Price" DataFormatString="{0:C2}" SortExpression="Max"/>
+        <asp:BoundField DataField="Min" 
+            HeaderText="Min Price" DataFormatString="{0:C2}" SortExpression="Min" />
+        <asp:BoundField DataField="GainLossRatio" 
+            HeaderText="Gain Loss Ratio" DataFormatString="{0:F4}" SortExpression="GainLossRatio" />
+        <asp:BoundField DataField="StandardDeviation" 
+            HeaderText="Std Dev" DataFormatString="{0:F4}" SortExpression="StandardDeviation" />
+        <asp:BoundField DataField="Volatility" 
+            HeaderText="Volatility" DataFormatString="{0:P2}" SortExpression="Volatility" />
+    </Columns>
+</asp:GridView>
+<asp:GridView SkinID="Trades"
+    runat="server"
+    GridLines="None" 
+    AutoGenerateColumns="false" 
+    AllowPaging="true" 
+    AllowSorting="true" 
+    CellPadding="6" 
+    PageSize="20"
+    AutoGenerateSelectButton="true">
+    <SortedAscendingHeaderStyle ForeColor="White" />
+    <SortedDescendingHeaderStyle ForeColor="White"   />
+    <SelectedRowStyle BackColor="#505050" Font-Bold="true"/>
+    <HeaderStyle BackColor="Crimson" Font-Bold="true" />
+    <RowStyle HorizontalAlign="Center" />
+    <AlternatingRowStyle BackColor="#151515" />
+    <PagerStyle ForeColor="Wheat" Font-Bold="true" />
+    <Columns>
+        <asp:BoundField DataField="Direction" 
+            HeaderText="Direction" SortExpression="Direction" />
+        <asp:BoundField DataField="CapitalAtRisk" DataFormatString="{0:C}"
+            HeaderText="Capital At Risk" SortExpression="CapitalAtRisk"/>
+        <asp:BoundField DataField="PL" DataFormatString="{0:C}"
+            HeaderText="PL" SortExpression="PL"/>
+        <asp:BoundField DataField="PlPerc" DataFormatString="{0:P2}"
+            HeaderText="PlPerc" SortExpression="PlPerc"/>
+    </Columns>
+</asp:GridView>

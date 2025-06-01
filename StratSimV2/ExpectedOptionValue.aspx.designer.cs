@@ -69,6 +69,24 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.Label lblError;
 
 		/// <summary>
+		/// chartEquity control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartEquity;
+
+		/// <summary>
+		/// lblEquity control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblEquity;
+
+		/// <summary>
 		/// chartOption control.
 		/// </summary>
 		/// <remarks>
@@ -96,6 +114,24 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.Label lblResult;
 
 		/// <summary>
+		/// chartOptionFreq control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartOptionFreq;
+
+		/// <summary>
+		/// tbBins control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox tbBins;
+
+		/// <summary>
 		/// chartStock control.
 		/// </summary>
 		/// <remarks>
@@ -114,21 +150,12 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.Label lblStockResult;
 
 		/// <summary>
-		/// chartEquity control.
+		/// chartStockFreq control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartEquity;
-
-		/// <summary>
-		/// lblEquity control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblEquity;
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartStockFreq;
 	}
 }

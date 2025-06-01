@@ -2,12 +2,17 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode title="Root">
     <siteMapNode url="default.aspx" title="Home"/>
-    <siteMapNode url="SingleOption.aspx" title="Single Option" />
-    <siteMapNode url="callandputs.aspx" title="Hedge Simulator" />
-    <siteMapNode title="Expected Option Return" url="ExpectedOptionValue.aspx" />
-    <siteMapNode title="Option Analysis">
+    <siteMapNode title="Option Analysis" url="OptionAnalysisPage.aspx">
       <siteMapNode  url="OptionAnalysis.aspx" title="P/L Analysis"/>
       <siteMapNode url="OptionGreekAnalysis.aspx" title="Greek Analysis"/>
     </siteMapNode>
+    <siteMapNode title="Stock Analysis" url="StockAnalysisPage.aspx">
+      <siteMapNode title="Expected Stock Move" url="ExpectedStockMove.aspx"/>
+      <siteMapNode title="Fair Stock Value" url="FairStockValue.aspx">
+        <siteMapNode title="Discounted Cash Flow" url="DcfPage.aspx"/>
+        <siteMapNode title="Dividend Discount Model"/>
+      </siteMapNode>
+    </siteMapNode>
+    <siteMapNode title="Market Simulator" url="MarketSimulator.aspx"/>
   </siteMapNode>
 </siteMap>

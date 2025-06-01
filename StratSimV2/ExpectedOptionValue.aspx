@@ -6,6 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Expected Return of a Single Option</h2>
+    <h3>Estimate the Expected Payout of an Option Strategy</h3>
     <table>
         <tr>
             <td>
@@ -24,36 +25,66 @@
                     </tr>
                 </table>
                 <br /><br />
-                <asp:Button runat="server" ID="btnSimulate" Text="Simulate" OnClick="btnSimulate_Click" />
-                <br />
+                <asp:Button runat="server" ID="btnSimulate" Text="Simulate" OnClick="btnSimulate_Click" /><br />
+                <asp:UpdateProgress runat="server" DisplayAfter="200">
+                    <ProgressTemplate>
+                        <div style="font-weight: bold;">
+                            Loading, please wait...
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+                <br /><br />
                 <asp:Label runat="server" ID="lblError" />
             </td>
             <td>
                 <table>
                     <tr>
                         <td style="vertical-align:top;">
-                            <h4>Option Price</h4>
+                            <h3>Equity</h3>
+                            <asp:Chart ID="chartEquity" runat="server" SkinID="Large" /><br />
+                            
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="lblEquity" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:top;">
+                            <h3>Option Price</h3>
                             
                             <asp:Chart ID="chartOption" runat="server" SkinID="Large"/><br />
                             <asp:CheckBox runat="server" ID="cbLog" Checked="false" 
-                                Text="Use Logarithmic Scale" OnCheckedChanged="cbLog_CheckedChanged" /><br /><hr />
-                            <asp:Label runat="server" ID="lblResult" />
-            
+                                Text="Use Logarithmic Scale" OnCheckedChanged="cbLog_CheckedChanged" />
                         </td>
-                        <td style="vertical-align:top;">
-                            <h4>Stock Price</h4>
+                        <td>
+                            <asp:Label runat="server" ID="lblResult" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Option Price Frequency</h3>
+                            <asp:Chart ID="chartOptionFreq" runat="server" SkinID="Histogram" /><br />
+                            Bins:&nbsp;
+                            <asp:TextBox runat="server" ID="tbBins" Value="20" Min="1" Max="100" TextMode="Number"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Stock Price</h3>
                             <asp:Chart ID="chartStock" runat="server" SkinID="Large"/><br />
+                            
+                        </td>
+                        <td>
                             <asp:Label runat="server" ID="lblStockResult" />
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td style="vertical-align:top;">
-                            <h4>Equity</h4>
-                            <asp:Chart ID="chartEquity" runat="server" SkinID="Large" /><br />
-                            <asp:Label runat="server" ID="lblEquity" />
+                        <td>
+                            <h3>Stock Price Frequency</h3>
+                            <asp:Chart ID="chartStockFreq" runat="server" SkinID="Histogram" />
                         </td>
                     </tr>
+                    
                 </table>
                 
             </td>

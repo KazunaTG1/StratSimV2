@@ -105,6 +105,24 @@ namespace StratSimV2.Controls
 		protected global::System.Web.UI.WebControls.TextBox tbCloseDTE;
 
 		/// <summary>
+		/// rowInterval control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlTableRow rowInterval;
+
+		/// <summary>
+		/// ddlInterval control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList ddlInterval;
+
+		/// <summary>
 		/// lblResult control.
 		/// </summary>
 		/// <remarks>

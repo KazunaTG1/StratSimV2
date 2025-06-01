@@ -60,6 +60,17 @@ namespace StratSimV2
 				tbStrike.Text = value.ToString();
 			}
 		}
+		public double Moneyness
+		{
+			get
+			{
+				return double.Parse(tbMoneyness.Text);
+			}
+			set
+			{
+				tbMoneyness.Text = value.ToString();
+			}
+		}
 		public double StockPrice
 		{
 			get
@@ -98,7 +109,7 @@ namespace StratSimV2
 			}
 			set
 			{
-				tbExpiration.Text =  $"{value.Year}-{value.Month}-{value.Day}";
+				tbExpiration.Text = value.ToString("yyyy-MM-dd");
 			}
 		}
 		public double ImpliedVolatility
@@ -121,6 +132,17 @@ namespace StratSimV2
 			set
 			{
 				tbInterest.Text = value.ToString();
+			}
+		}
+		public int DaysToExpiration
+		{
+			get
+			{
+				return int.Parse(tbDTE.Text);
+			}
+			set
+			{
+				tbDTE.Text = value.ToString();
 			}
 		}
 		protected void option_changed(object sender, EventArgs e)
@@ -171,6 +193,29 @@ namespace StratSimV2
 				InterestRate = Option.InterestRate;
 			}
 		}
-		
+
+		protected void tbMoneyness_TextChanged(object sender, EventArgs e)
+		{
+			Strike = StockPrice * Moneyness;
+			option_changed(sender, e);
+		}
+
+		protected void tbStrike_TextChanged(object sender, EventArgs e)
+		{
+			Moneyness = Strike / StockPrice; 
+			option_changed(sender, e);
+		}
+
+		protected void tbExpiration_TextChanged(object sender, EventArgs e)
+		{
+			DaysToExpiration = (int)(Expiration - DateTime.Now).TotalDays;
+			option_changed(sender, e);
+		}
+
+		protected void tbDTE_TextChanged(object sender, EventArgs e)
+		{
+			Expiration = DateTime.Now.AddDays(DaysToExpiration);
+			option_changed(sender, e);
+		}
 	}
 }

@@ -36,22 +36,23 @@ namespace StratSimV2
 			List<double> payouts = new List<double>();
 			List<double> payRatios = new List<double>();
 			List<double> exits = new List<double>();
+
 			for (int i = 0; i < trades; i++)
 			{
-				double exitPrice = oiOption.Option.TradeOption(
+				var exitPrice = oiOption.Option.TradeOption(oiOptionSim.Direction,
 					oiOptionSim.TakeProfit, oiOptionSim.StopLoss, oiOptionSim.CloseDTE,
-					out var prices, out var optionPrices, out var status);
+					out var prices, out var optionPrices, out var status, oiOptionSim.Interval);
 				int contracts = oiOption.Option.GetContracts(oiOptionSim.QuantityType, oiOptionSim.Quantity, currBal);
 				double cost = contracts * oiOption.Option.MarketValue;
-				chartOption.AddSeries(optionPrices, i+1);
-				chartStock.AddSeries(prices, i + 1);
-				double pl = (exitPrice - oiOption.Option.MarketPrice) * 100 * contracts,
-					plRatio = (exitPrice / oiOption.Option.MarketPrice) - 1;
+				chartOption.AddSeries(optionPrices, i+1, true);
+				chartStock.AddSeries(prices, i + 1, true);
+				double pl = (exitPrice.Price - oiOption.Option.MarketPrice) * 100 * contracts,
+					plRatio = (exitPrice.Price / oiOption.Option.MarketPrice) - 1;
 				if (cost > currBal)
 				{
 					break;
 				}
-				exits.Add(exitPrice);
+				exits.Add(exitPrice.Price);
 				payouts.Add(pl);
 				payRatios.Add(plRatio);
 				if (oiOptionSim.Direction == QFin.Models.OptionPricing.TradeDirection.Short)
@@ -59,7 +60,8 @@ namespace StratSimV2
 				currBal += pl;
 				equity.Add(currBal);
 			}
-			chartEquity.AddSeries(equity);
+			AddHistogram();
+			chartEquity.AddSeries(equity, "Equity", true);
 			double tpPrice = (oiOption.Option.MarketPrice * (1 + oiOptionSim.TakeProfit));
 			if (tpPrice > 0 && !cbLog.Checked)
 				chartOption.AddIndicator("Y", tpPrice, upColor);
@@ -70,6 +72,30 @@ namespace StratSimV2
 				chartOption.AddIndicator("Y", oiOption.Option.MarketPrice, Color.Gray);
 			SetResult(payouts, payRatios);
 			SetEquity(equity, sBal);
+			SetStock();
+
+		}
+		private void AddHistogram()
+		{
+			List<double> finalS0Prices = chartStock.Series.Select(x => x.Points.Last().YValues[0]).ToList();
+			List<double> finalOpPrices = chartOption.Series.Select(x => x.Points.Last().YValues[0]).ToList();
+
+			int bins = int.Parse(tbBins.Text);
+			chartOptionFreq.Series.Clear();
+			chartStockFreq.Series.Clear();
+			chartOptionFreq.AddHistogram(finalOpPrices, bins);
+			chartStockFreq.AddHistogram(finalS0Prices, bins);
+		}
+		private void SetStock()
+		{
+			var sb = new StringBuilder();
+			double max = chartStock.Series.Max(x => x.Points.FindMaxByValue().YValues[0]);
+			double min = chartStock.Series.Min(x => x.Points.FindMinByValue().YValues[0]);
+			double range = max - min;
+			sb.Append(Format.Label("Range", $"{range:C}"));
+			sb.Append(Format.LabelMoney("Upper Limit", max));
+			sb.Append(Format.LabelMoney("Lower Limit", min));
+			lblStockResult.Text = sb.ToString();
 		}
 		private void SetResult(List<double> payouts, List<double> payRatios)
 		{

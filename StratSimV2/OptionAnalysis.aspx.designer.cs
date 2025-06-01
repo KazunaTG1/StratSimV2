@@ -15,13 +15,13 @@ namespace StratSimV2
 	{
 
 		/// <summary>
-		/// pnlOptions control.
+		/// Panel1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Panel pnlOptions;
+		protected global::System.Web.UI.WebControls.Panel Panel1;
 
 		/// <summary>
 		/// oiOption control.
@@ -42,15 +42,6 @@ namespace StratSimV2
 		protected global::StratSimV2.Controls.OptionSimOI oiOptionSim;
 
 		/// <summary>
-		/// chartPL control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartPL;
-
-		/// <summary>
 		/// lblResPL control.
 		/// </summary>
 		/// <remarks>
@@ -60,13 +51,13 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.Label lblResPL;
 
 		/// <summary>
-		/// chartPrices control.
+		/// chartPL control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartPrices;
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartPL;
 
 		/// <summary>
 		/// lblResPrices control.
@@ -76,6 +67,15 @@ namespace StratSimV2
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Label lblResPrices;
+
+		/// <summary>
+		/// chartPrices control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartPrices;
 
 		/// <summary>
 		/// cbFindProbabilities control.
@@ -96,12 +96,12 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.TextBox tbScale;
 
 		/// <summary>
-		/// reqScale control.
+		/// RequiredFieldValidator1 control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.RequiredFieldValidator reqScale;
+		protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 	}
 }

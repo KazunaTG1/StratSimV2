@@ -42,13 +42,13 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.Label lblTitle;
 
 		/// <summary>
-		/// chartGreek control.
+		/// lblDescription control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartGreek;
+		protected global::System.Web.UI.WebControls.Label lblDescription;
 
 		/// <summary>
 		/// lblResult control.
@@ -58,5 +58,41 @@ namespace StratSimV2
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Label lblResult;
+
+		/// <summary>
+		/// tbScale control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.TextBox tbScale;
+
+		/// <summary>
+		/// chartGreek control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartGreek;
+
+		/// <summary>
+		/// lblRateResult control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblRateResult;
+
+		/// <summary>
+		/// chartGreekRate control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartGreekRate;
 	}
 }

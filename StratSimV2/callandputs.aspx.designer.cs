@@ -105,67 +105,22 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.Label lblError;
 
 		/// <summary>
-		/// chartCall control.
+		/// lblPL control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartCall;
+		protected global::System.Web.UI.WebControls.Label lblPL;
 
 		/// <summary>
-		/// lblCallRes control.
+		/// chartPL control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblCallRes;
-
-		/// <summary>
-		/// chartPut control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartPut;
-
-		/// <summary>
-		/// lblPutRes control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblPutRes;
-
-		/// <summary>
-		/// chartStock control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartStock;
-
-		/// <summary>
-		/// lblStockResult control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.Label lblStockResult;
-
-		/// <summary>
-		/// chartEquity control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.DataVisualization.Charting.Chart chartEquity;
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartPL;
 
 		/// <summary>
 		/// lblEquity control.
@@ -186,6 +141,15 @@ namespace StratSimV2
 		protected global::System.Web.UI.WebControls.Label lblAvgPL;
 
 		/// <summary>
+		/// chartEquity control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartEquity;
+
+		/// <summary>
 		/// lbPayouts control.
 		/// </summary>
 		/// <remarks>
@@ -193,5 +157,59 @@ namespace StratSimV2
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.ListBox lbPayouts;
+
+		/// <summary>
+		/// lblCallRes control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblCallRes;
+
+		/// <summary>
+		/// chartCall control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartCall;
+
+		/// <summary>
+		/// lblPutRes control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblPutRes;
+
+		/// <summary>
+		/// chartPut control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartPut;
+
+		/// <summary>
+		/// lblStockResult control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Label lblStockResult;
+
+		/// <summary>
+		/// chartStock control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.DataVisualization.Charting.Chart chartStock;
 	}
 }

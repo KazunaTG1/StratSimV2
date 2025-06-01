@@ -80,6 +80,18 @@
     <Content Include="OptionAnalysis.aspx" />
     <Content Include="OptionGreekAnalysis.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="ExpectedStockMove.aspx" />
+    <Content Include="DcfPage.aspx" />
+    <Content Include="FairStockValue.aspx" />
+    <Content Include="DdmPage.aspx" />
+    <Content Include="HestonModel.aspx" />
+    <Content Include="StochasticModelsPage.aspx" />
+    <Content Include="OptionSimsPage.aspx" />
+    <Content Include="OptionAnalysisPage.aspx" />
+    <Content Include="StockAnalysisPage.aspx" />
+    <Content Include="DeltaHedge.aspx" />
+    <Content Include="MarketSimulator.aspx" />
+    <Content Include="TradingSimulator.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChartUtil.cs" />
@@ -91,6 +103,7 @@
       <DependentUpon>OptionSimOI.ascx</DependentUpon>
     </Compile>
     <Compile Include="Format.cs" />
+    <Compile Include="HistogramBuilder.cs" />
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -148,11 +161,97 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ExpectedStockMove.aspx.cs">
+      <DependentUpon>ExpectedStockMove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExpectedStockMove.aspx.designer.cs">
+      <DependentUpon>ExpectedStockMove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DcfPage.aspx.cs">
+      <DependentUpon>DcfPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DcfPage.aspx.designer.cs">
+      <DependentUpon>DcfPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FairStockValue.aspx.cs">
+      <DependentUpon>FairStockValue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FairStockValue.aspx.designer.cs">
+      <DependentUpon>FairStockValue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DdmPage.aspx.cs">
+      <DependentUpon>DdmPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DdmPage.aspx.designer.cs">
+      <DependentUpon>DdmPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HestonModel.aspx.cs">
+      <DependentUpon>HestonModel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HestonModel.aspx.designer.cs">
+      <DependentUpon>HestonModel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StochasticModelsPage.aspx.cs">
+      <DependentUpon>StochasticModelsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StochasticModelsPage.aspx.designer.cs">
+      <DependentUpon>StochasticModelsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OptionSimsPage.aspx.cs">
+      <DependentUpon>OptionSimsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OptionSimsPage.aspx.designer.cs">
+      <DependentUpon>OptionSimsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OptionAnalysisPage.aspx.cs">
+      <DependentUpon>OptionAnalysisPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OptionAnalysisPage.aspx.designer.cs">
+      <DependentUpon>OptionAnalysisPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StockAnalysisPage.aspx.cs">
+      <DependentUpon>StockAnalysisPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockAnalysisPage.aspx.designer.cs">
+      <DependentUpon>StockAnalysisPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeltaHedge.aspx.cs">
+      <DependentUpon>DeltaHedge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeltaHedge.aspx.designer.cs">
+      <DependentUpon>DeltaHedge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarketSimulator.aspx.cs">
+      <DependentUpon>MarketSimulator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarketSimulator.aspx.designer.cs">
+      <DependentUpon>MarketSimulator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TradingSimulator.aspx.cs">
+      <DependentUpon>TradingSimulator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TradingSimulator.aspx.designer.cs">
+      <DependentUpon>TradingSimulator.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
     <Content Include="App_Themes\MainTheme\MainTheme.skin" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\kazuna18-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\kazuna18-001-site1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\StratSim - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

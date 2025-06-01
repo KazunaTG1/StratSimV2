@@ -15,48 +15,39 @@ namespace StratSimV2
 	{
 
 		/// <summary>
-		/// lnkSingleOption control.
+		/// lnkMarketSimulator control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.HyperLink lnkSingleOption;
+		protected global::System.Web.UI.WebControls.HyperLink lnkMarketSimulator;
 
 		/// <summary>
-		/// lnkTwoOptions control.
+		/// lnkOptionSims control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.HyperLink lnkTwoOptions;
+		protected global::System.Web.UI.WebControls.HyperLink lnkOptionSims;
 
 		/// <summary>
-		/// lnkExpectedValue control.
+		/// lnkOptionAnalysis control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.HyperLink lnkExpectedValue;
+		protected global::System.Web.UI.WebControls.HyperLink lnkOptionAnalysis;
 
 		/// <summary>
-		/// lnkAnalysisPL control.
+		/// lnkStockAnalysis control.
 		/// </summary>
 		/// <remarks>
 		/// Auto-generated field.
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.HyperLink lnkAnalysisPL;
-
-		/// <summary>
-		/// lnkAnalysisGreek control.
-		/// </summary>
-		/// <remarks>
-		/// Auto-generated field.
-		/// To modify move field declaration from designer file to code-behind file.
-		/// </remarks>
-		protected global::System.Web.UI.WebControls.HyperLink lnkAnalysisGreek;
+		protected global::System.Web.UI.WebControls.HyperLink lnkStockAnalysis;
 	}
 }

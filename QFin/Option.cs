@@ -1,11 +1,14 @@
 ﻿using MathNet.Numerics;
 using MathNet.Numerics.RootFinding;
+using QFin.MarketData.Transformations;
 using QFin.Models.OptionPricing;
 using QFin.Models.Stochastic;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics.Contracts;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -30,66 +33,94 @@ namespace QFin
 		}
 		public class Option : Stock
 		{
-			public Dictionary<double, double> GetThetaMap(out Dictionary<double, double> prices)
+			public Dictionary<double, double> GetThetaMap(out Dictionary<double, double> prices, out Dictionary<double, double> rates)
 			{
 				prices = new Dictionary<double, double>();
+				rates = new Dictionary<double, double> ();
 				var result = new Dictionary<double, double>();
 				double dte = (Expiration - DateTime.Now).TotalDays;
 				for (double d = dte; d > 1; d--)
 				{
 					if (d < 0) continue;
+					double newPrice = BlackScholes.OptionPrice(Type, StockPrice, Strike, d / 365, InterestRate, ImpliedVolatility);
+					if (newPrice <= 0.01)
+						continue;
+					prices.Add(d.Round(0), newPrice);
 					result.Add(d.Round(0), BlackScholes.OptionTheta(Type, StockPrice, Strike, d, InterestRate, ImpliedVolatility));
-					prices.Add(d.Round(0), BlackScholes.OptionPrice(Type, StockPrice, Strike, d / 365, InterestRate, ImpliedVolatility));
+					rates.Add(d.Round(0), BlackScholes.OptionThetaRate(Type, StockPrice, Strike, d, InterestRate, ImpliedVolatility));
+					
+					
 				}
 				return result;
 			}
-			public Dictionary<double, double> GetDeltaMap(out Dictionary<double, double> prices)
+			public Dictionary<double, double> GetDeltaMap(int scale, out Dictionary<double, double> prices, out Dictionary<double, double> rates)
 			{
+				rates = new Dictionary<double, double>();
 				prices = new Dictionary<double, double>();
 				var result = new Dictionary<double, double>();
-				double limit = StockPrice * 2;
+				double limit = StockPrice * ((scale / 10.0) + 1);
 				for (int i = 0; i <= limit; i++)
 				{
+					double newPrice = BlackScholes.OptionPrice(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility);
+					if (newPrice <= 0.01)
+						continue;
+					prices.Add(i, newPrice);
+					rates.Add(i, BlackScholes.OptionDeltaRate(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility));
 					result.Add(i, BlackScholes.OptionDelta(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility));
-					prices.Add(i, BlackScholes.OptionPrice(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility));
 				}
 				return result;
 			}
-			public Dictionary<double, double> GetGammaMap(out Dictionary<double, double> prices)
+			public Dictionary<double, double> GetGammaMap(int scale, out Dictionary<double, double> prices, out Dictionary<double, double> rates)
 			{
+				rates = new Dictionary<double, double>();
 				prices = new Dictionary<double, double>();
 				var result = new Dictionary<double, double>();
-				double limit = StockPrice * 2;
+				double limit = StockPrice * ((scale / 10.0) + 1);
 				for (int i = 0; i <= limit; i++)
 				{
+					double newPrice = BlackScholes.OptionPrice(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility);
+					if (newPrice <= 0.01)
+						continue;
+					prices.Add(i, newPrice);
+					rates.Add(i, BlackScholes.OptionGammaRate(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility));
 					result.Add(i, BlackScholes.OptionGamma(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility));
-					prices.Add(i, BlackScholes.OptionPrice(Type, i, Strike, YearsToExpiry, InterestRate, ImpliedVolatility));
+					
 				}
 				return result;
 			}
-			public Dictionary<double, double> GetRhoMap(out Dictionary<double, double> prices)
+			public Dictionary<double, double> GetRhoMap(int scale, out Dictionary<double, double> prices, out Dictionary<double, double> rates)
 			{
+				rates = new Dictionary<double, double>();
 				prices = new Dictionary<double, double>();
 				var result = new Dictionary<double, double>();
-				double limit = 20;
+				double limit = 10 * scale;
 				for (int r = 0; r < limit; r++)
 				{
 					double rate = (double)r / 100;
+					double newPrice = BlackScholes.OptionPrice(Type, StockPrice, Strike, YearsToExpiry, rate, ImpliedVolatility);
+					if (newPrice <= 0.01)
+						continue;
+					prices.Add(r, newPrice);
+					rates.Add(r, BlackScholes.OptionRhoRate(Type, StockPrice, Strike, YearsToExpiry, rate, ImpliedVolatility));
 					result.Add(r, BlackScholes.OptionRho(Type, StockPrice, Strike, YearsToExpiry, rate, ImpliedVolatility));
-					prices.Add(r, BlackScholes.OptionPrice(Type, StockPrice, Strike, YearsToExpiry, rate, ImpliedVolatility));
 				}
 				return result;
 			}
-			public Dictionary<double, double> GetVegaMap(out Dictionary<double, double> prices)
+			public Dictionary<double, double> GetVegaMap(int scale, out Dictionary<double, double> prices, out Dictionary<double, double> rates)
 			{
+				rates = new Dictionary<double, double>();
 				prices = new Dictionary<double, double>();
 				var result = new Dictionary<double, double>();
-				double limit = 100;
+				double limit = 10 * scale;
 				for (int v = 0; v < limit; v++)
 				{
 					double vol = (double)v / 100;
+					double newPrice = BlackScholes.OptionPrice(Type, StockPrice, Strike, YearsToExpiry, InterestRate, vol);
+					if (newPrice <= 0.01)
+						continue;
+					prices.Add(v, newPrice);
+					rates.Add(v, BlackScholes.OptionVegaRate(Type, StockPrice, Strike, YearsToExpiry, InterestRate, vol));
 					result.Add(v, BlackScholes.OptionVega(Type, StockPrice, Strike, YearsToExpiry, InterestRate, vol));
-					prices.Add(v, BlackScholes.OptionPrice(Type, StockPrice, Strike, YearsToExpiry, InterestRate, vol));
 				}
 				return result;
 			}
@@ -103,8 +134,8 @@ namespace QFin
 					(i,loop,local) =>
 				{
 					double localTP, localSL, localDTE, localEXP;
-					double exit = TradeOption(tp, sl, closeDTE, out var prices, out var optionPrices, out var status);
-					double pl = exit - Price;
+					var exit = TradeOption(TradeDirection.Long, tp, sl, closeDTE, out var prices, out var optionPrices, out var status);
+					double pl = exit.Price - Price;
 					
 					if (pl > 0) local.wins++;
 
@@ -130,6 +161,22 @@ namespace QFin
 				dteProb = (double)totalDTE / simCount;
 				expProb = (double)totalEXP / simCount;
 				return (double)totalWins / simCount;
+			}
+			public static Color GetExitColor(ExitStatus exitStatus)
+			{
+				switch (exitStatus)
+				{
+					case ExitStatus.TakeProfit:
+						return Color.LightGreen;
+					case ExitStatus.StopLoss:
+						return Color.MistyRose;
+					case ExitStatus.CloseDTE:
+						return Color.Gold;
+					case ExitStatus.Expiration:
+						return Color.PeachPuff;
+					default:
+						return Color.LightBlue;
+				}
 			}
 			public int GetContracts(string quantityType, double quantity, double currBal)
 			{
@@ -293,46 +340,64 @@ namespace QFin
 					x.Key < StockPrice + (StockPrice / percLength))
 					.ToDictionary(x => x.Key, x => x.Value);
 			}
-			public double TradeOption(double tp, double sl, int closeDTE, out List<StockPrice> prices, out List<StockPrice> optionPrices, out ExitStatus exitStatus)
+			public StockPrice TradeOption(TradeDirection direction, double tp, double sl, int closeDTE, 
+				out List<StockPrice> prices, out List<StockPrice> optionPrices, out ExitStatus exitStatus, Interval interval = Interval.Day)
 			{
-				prices = GeometricBrownianMotion.GBM(StockPrice, InterestRate, YearsToExpiry, ImpliedVolatility, DateTime.Now);
-				return TradeOption(tp, sl, closeDTE, prices, out optionPrices, out exitStatus);
+				prices = GeometricBrownianMotion.GBM(StockPrice, InterestRate, YearsToExpiry, ImpliedVolatility, DateTime.Now, interval);
+				return TradeOption(direction, tp, sl, closeDTE, prices, out optionPrices, out exitStatus);
 			}
 			/// <summary>
-			/// Returns the exit price of the option
+			/// Trades an option
 			/// </summary>
 			/// <param name="tp"></param>
 			/// <param name="sl"></param>
 			/// <param name="closeDTE"></param>
 			/// <param name="prices"></param>
 			/// <param name="optionPrices"></param>
-			/// <returns></returns>
-			public double TradeOption(double tp, double sl, int closeDTE, List<StockPrice> prices, out List<StockPrice> optionPrices, out ExitStatus status)
+			/// <returns>The exit price of the option</returns>
+			public StockPrice TradeOption(TradeDirection direction, double tp, double sl, int closeDTE, List<StockPrice> prices, out List<StockPrice> optionPrices, out ExitStatus status)
 			{
-				optionPrices = prices.Select(x => new StockPrice(x.Timestamp, GetOptionPrice(x.Price))).ToList();
+				optionPrices = prices.Select(x => new StockPrice(x.Timestamp, GetOptionPrice(x.Price, x.Timestamp))).ToList();
 				for (int i = 0; i < prices.Count; i++)
 				{
 					StockPrice price = optionPrices[i];
-					
+
 					double perc = (price.Price / MarketPrice) - 1;
-					if (perc > tp && tp != -1)
+					if (direction == TradeDirection.Long)
 					{
-						status = ExitStatus.TakeProfit;
-						return price.Price;
+						if (perc > tp && tp != -1)
+						{
+							status = ExitStatus.TakeProfit;
+							return price;
+						}
+						if (perc < -sl && sl != -1)
+						{
+							status = ExitStatus.StopLoss;
+							return price;
+						}
 					}
-					if (perc < -sl && sl != -1)
+					else
 					{
-						status = ExitStatus.StopLoss;
-						return price.Price;
+						if (perc < -tp && tp != -1)
+						{
+							status = ExitStatus.TakeProfit;
+							return price;
+						}
+						if (perc > sl && sl != -1)
+						{
+							status = ExitStatus.StopLoss;
+							return price;
+						}
 					}
+					
 					if ((Expiration - price.Timestamp).TotalDays < closeDTE && closeDTE != -1)
 					{
 						status = ExitStatus.CloseDTE;
-						return price.Price;
+						return price;
 					}
 				}
 				status = ExitStatus.Expiration;
-				return IntrinsicPrice(prices);
+				return new StockPrice(Expiration, IntrinsicPrice(prices));
 			}
 			public double IntrinsicPrice(List<StockPrice> prices)
 			{
@@ -357,7 +422,23 @@ namespace QFin
 				ImpliedVolatility = iv;
 				Expiration = expiry;
 				InterestRate = interest;
-				MarketPrice = marketPrice;
+				if (marketPrice == 0)
+				{
+					MarketPrice = marketPrice;
+				}
+				MarketPrice = marketPrice == 0 ? Price : marketPrice;
+				
+			}
+			public Option(OptionDTO opDto)
+			{
+				Symbol = opDto.Symbol;
+				Type = opDto.Type;
+				Strike = opDto.Strike;
+				StockPrice = opDto.StockPrice;
+				ImpliedVolatility = opDto.ImpliedVolatility;
+				Expiration = opDto.Expiration;
+				InterestRate = opDto.InterestRate;
+				MarketPrice = opDto.MarketPrice;
 			}
 			#endregion
 			public double Strike { get; set; }
@@ -415,6 +496,18 @@ namespace QFin
 						return BlackScholes.CallPrice(price, Strike, YearsToExpiry, InterestRate, ImpliedVolatility);
 					case OptionType.Put:
 						return BlackScholes.PutPrice(price, Strike, YearsToExpiry, InterestRate, ImpliedVolatility);
+					default: return 0;
+				}
+			}
+			public double GetOptionPrice(double price, DateTime date)
+			{
+				double t = (Expiration - date).TotalDays / 365.0;
+				switch (Type)
+				{
+					case OptionType.Call:
+						return BlackScholes.CallPrice(price, Strike, t, InterestRate, ImpliedVolatility);
+					case OptionType.Put:
+						return BlackScholes.PutPrice(price, Strike, t, InterestRate, ImpliedVolatility);
 					default: return 0;
 				}
 			}
@@ -517,6 +610,37 @@ namespace QFin
 				}
 
 			}
+			public string ToLongString()
+			{
+				return $"{Type} {Expiration:d} @ {Strike:C}";
+			}
+		}
+		[Serializable]
+		public class OptionDTO
+		{
+			public OptionDTO(Option option, int quantity)
+			{
+				Symbol = option.Symbol;
+				Type = option.Type;
+				Strike = option.Strike;
+				StockPrice = option.StockPrice;
+				ImpliedVolatility = option.ImpliedVolatility;
+				Expiration = option.Expiration;
+				InterestRate = option.InterestRate;
+				MarketPrice = option.MarketPrice;
+				TheorPrice = option.Price;
+				Quantity = quantity;
+			}
+			public string Symbol { get; set; }
+			public OptionType Type { get; set; }
+			public double Strike { get; set; }
+			public double StockPrice { get; set; }
+			public double ImpliedVolatility { get; set; }
+			public DateTime Expiration { get; set; }
+			public double InterestRate { get; set; }
+			public double MarketPrice { get; set; }
+			public double TheorPrice { get; set; }
+			public int Quantity { get; set; }
 		}
 	}
 }

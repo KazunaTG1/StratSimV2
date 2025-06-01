@@ -5,19 +5,41 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Option Greek Analysis</h2>
+    <h1>Option Greek Analysis</h1>
+    <h2>Visualize the Change in Option Price Based On Market Variables</h2>
     <table>
         <tr>
             <td>
                 <asp:DropDownList runat="server" ID="ddlGreeks" AutoPostBack="true" OnSelectedIndexChanged="ddlGreeks_SelectedIndexChanged" /><br />
                 <h3>Simulation Settings</h3>
                 <fin:OptionOI runat="server" ID="oiOption" UseMarketPrice="false"/>
-                
             </td>
             <td>
-                <h3><asp:Label runat="server" ID="lblTitle" Text="Delta" /></h3>
-                <asp:Chart runat="server" ID="chartGreek" SkinID="Numerical" Width="1000" Height="500" /><br />
-                <asp:Label runat="server" ID="lblResult" />
+                <table>
+                    <tr>
+                        <td>
+                            <h2><asp:Label runat="server" ID="lblTitle" Text="Delta" /></h2>
+                            <p><asp:Label runat="server" ID="lblDescription" /></p>
+                            <hr />
+                            <h3>Change ($)</h3>
+                            <h4><asp:Label runat="server" ID="lblResult" /></h4>
+                            
+                            Scale: &nbsp;<asp:TextBox runat="server" ID="tbScale" TextMode="Number" Value="7" Step="1" Min="1"
+                                Width="50px" AutoPostBack="true" OnTextChanged="Page_Load" /><br />
+                            <asp:Chart runat="server" ID="chartGreek" SkinID="Numerical" Width="1400" Height="600" /><br />
+                            <hr />
+                        </td>
+        
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Rate of Change (%)</h3>
+                            <h4><asp:Label runat="server" ID="lblRateResult" /></h4>
+                            <asp:Chart runat="server" ID="chartGreekRate" SkinID="Numerical" Width="1400" Height="600" /><br />
+                            
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>

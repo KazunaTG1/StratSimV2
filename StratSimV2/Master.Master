@@ -6,11 +6,23 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script type="text/javascript">
+        document.addEventListener('load', function () {
+            MathJax.typeset()
+        })
+    </script>
     <style>
+        a {
+            color: aliceblue !important;
+        }
         body {
             font-family: Calibri;
             font-size: 1.1em;
-            background-color: #111111;
+            background-color: #030303;
             color: white;
         }
         td {
@@ -21,6 +33,30 @@
         }
         .padded-button{
             padding:.4em .4em;
+        }
+        .lnk {
+             color: #A9DEF9;
+        }
+        .nolnk {
+            color: #E4C1F9;
+        }
+        .main {
+            text-align:center;
+            font-size:1.15em;
+            padding: 1em 15em;
+        }
+        .fixed-cell{
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            vertical-align:top;
+        }
+        .scrollable-cell {
+            overflow-y: auto;
+            max-height: 90vh;
+            display: block;
+            width: 100%;
         }
     </style>
 </head>
@@ -38,6 +74,7 @@
             <asp:UpdatePanel runat="server" ID="pnlUpdate">
                 <ContentTemplate>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+
                 </ContentTemplate>
             </asp:UpdatePanel>
             <br /><br /><br />

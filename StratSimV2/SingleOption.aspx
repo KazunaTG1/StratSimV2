@@ -7,6 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Single Option</h2>
+    <h3>Model the Performance of an Individual Option</h3>
     <table>
         <tr>
             <td>
@@ -15,7 +16,15 @@
                 <h3>Simulation Settings</h3>
                 <fin:OptionSimOI runat="server" ID="oiOptionSim" />
                 <br />
-                <asp:Button runat="server" ID="btnTrade" Text="Trade" OnClick="btnTrade_Click" Width="200px" /><hr /><br />
+                <asp:Button runat="server" ID="btnTrade" Text="Trade" OnClick="btnTrade_Click" Width="200px" /><br />
+                <asp:UpdateProgress runat="server" DisplayAfter="200">
+                    <ProgressTemplate>
+                        <div style="font-weight: bold;">
+                            Loading, please wait...
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+                <hr /><br />
                 <asp:CheckBox AutoPostBack="true" runat="server" ID="btnAutoTrade" Text="Auto Trade" 
                     OnCheckedChanged="btnAutoTrade_CheckedChanged" Font-Underline="true" Font-Bold="true" />
                 <asp:Timer ID="timerTrade" runat="server" Interval="2000" OnTick="timerTrade_Tick" Enabled="false" /> every&nbsp;
@@ -23,32 +32,34 @@
                     OnTextChanged="tbTickSpeed_TextChanged"/> seconds<br /><br /><hr />
                 <asp:Button runat="server" ID="btnReset" Text="Reset" OnClick="btnReset_Click" />
                 Starting Balance: <asp:TextBox runat="server" ID="tbBal" TextMode="Number" Text="500" Width="100px" /><br /><hr />
-                <asp:Label runat="server" ID="lblError" /><br />
-                <asp:Label runat="server" ID="lblEquity" /><br />
-                <asp:Label runat="server" ID="lblAvgPL" />
+                
             </td>
             <td>
                 <table>
                     <tr>
                         <td style="vertical-align:top;">
-                            <h4>Option Price</h4>
-                            <asp:Chart ID="chartOption" runat="server"/><br />
-                            <asp:Label runat="server" ID="lblResult" />
-            
-                        </td>
-                        <td style="vertical-align:top;">
-                            <h4>Stock Price</h4>
-                            <asp:Chart ID="chartStock" runat="server"/><br />
-                            <asp:Label runat="server" ID="lblStockResult" />
+                            <h3>Option Price</h3>
+                            <h4><asp:Label runat="server" ID="lblResult" /></h4>
+                            <asp:Chart runat="server" ID="chartOption" SkinID="Large" />
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
                         <td style="vertical-align:top;">
-                            <h4>Equity</h4>
-                            <asp:Chart ID="chartEquity" runat="server" />
+                            <h3>Stock Price</h3>
+                            <h4><asp:Label runat="server" ID="lblStockResult" /></h4>
+                            <asp:Chart runat="server" ID="chartStock" SkinID="Large" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:top;">
+                            <h3>Equity</h3>
+                            <h4><asp:Label runat="server" ID="lblError" />
+                                <asp:Label runat="server" ID="lblEquity" />
+                                <asp:Label runat="server" ID="lblAvgPL" /></h4>
+                            <asp:Chart ID="chartEquity" runat="server" SkinID="Large" />
                         </td>
                         <td>
+                            <h3>Payouts</h3>
                             <asp:ListBox runat="server" ID="lbPayouts"  Height="300px"/>
                         </td>
                     </tr>

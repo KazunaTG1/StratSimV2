@@ -53,7 +53,7 @@ namespace StratSimV2
 			}
 			lblError.Text = "";
 			chartStock.Series.Clear();
-			SetOption(out double pl, out double exit, out var prices, out var optionPrices);
+			SetOption(out double pl, out StockPrice exit, out var prices, out var optionPrices);
 			double equity = CurrBal + pl;
 			
 			Equity.Add(equity);
@@ -63,9 +63,9 @@ namespace StratSimV2
 			
 			var sbStockRes = new StringBuilder();
 			sbStockRes.Append(Format.LabelMoney("Entry Price", prices.First().Price));
-			if (optionPrices.Any(x => x.Price == exit))
+			if (optionPrices.Any(x => x.Price == exit.Price))
 			{
-				int exitIndex = optionPrices.IndexOf(optionPrices.First(x => x.Price == exit));
+				int exitIndex = optionPrices.IndexOf(optionPrices.First(x => x.Price == exit.Price));
 				sbStockRes.Append(Format.LabelMoney("Close Price", prices[exitIndex].Price));
 			}
 			lblStockResult.Text = sbStockRes.ToString();
@@ -87,38 +87,39 @@ namespace StratSimV2
 			chartStock.AddIndicator("Y", oiOption.Option.Strike, Color.Gold);
 			chartEquity.AddIndicator("Y", Equity.First(), Color.Gray);
 			chartStock.AddIndicator("Y", oiOption.Option.StockPrice, Color.Gray);
-			
-			chartStock.AddSeries(prices, "Stock Price");
+		
+			chartStock.AddSeries(prices, "Stock Price", true);
 			chartStock.XLabel("Date (MM/yy)");
 			chartStock.YLabel("Stock Price");
 			chartEquity.Series.Clear();
-			chartEquity.AddSeries(Equity);
+			chartEquity.AddSeries(Equity, "Equity", true);
 			chartEquity.XLabel("Trades");
 			chartEquity.YLabel("Equity");
-			chartEquity.ChartAreas[0].AxisX.LabelStyle.Format = "n0";
+			chartEquity.XFormat("n0");
 		}
-		private void SetOption(out double pl, out double exit, out List<StockPrice> prices, out List<StockPrice> optionPrices)
+		private void SetOption(out double pl, out StockPrice exit, out List<StockPrice> prices, out List<StockPrice> optionPrices)
 		{
 			chartOption.Series.Clear();
-			exit = oiOption.Option.TradeOption(oiOptionSim.TakeProfit, oiOptionSim.StopLoss, oiOptionSim.CloseDTE, 
-				out prices, out optionPrices, out var status);
+			exit = oiOption.Option.TradeOption(oiOptionSim.Direction, oiOptionSim.TakeProfit, oiOptionSim.StopLoss, oiOptionSim.CloseDTE,
+				out prices, out optionPrices, out var status, oiOptionSim.Interval);
 			int contracts = oiOption.Option.GetContracts(
 				oiOptionSim.QuantityType, oiOptionSim.Quantity, CurrBal);
-			pl = (exit - oiOption.Option.MarketPrice) * 100 * contracts;
-			double plRatio = (exit / oiOption.Option.MarketPrice) - 1;
+			pl = (exit.Price - oiOption.Option.MarketPrice) * 100 * contracts;
+			double plRatio = (exit.Price / oiOption.Option.MarketPrice) - 1;
 			if (oiOptionSim.Direction == QFin.Models.OptionPricing.TradeDirection.Short)
 				pl *= -1;
 			Payouts.Add(pl);
 			lbPayouts.Items.Add(pl.ToString("C"));
 			Session["Payouts"] = Payouts;
 			lblResult.Text = Format.GetSimLabel( contracts,
-				oiOption.MarketPrice, exit, pl, plRatio, 
+				oiOption.MarketPrice, exit.Price, pl, plRatio, 
 				oiOption.Expiration, oiOptionSim.TakeProfit, oiOptionSim.CloseDTE);
-			chartOption.AddSeries(optionPrices, "Option Price");
+			chartOption.AddSeries(optionPrices, "Option Price", true);
 			chartOption.XLabel("Date (MM/yy)");
 			chartOption.YLabel("Option Price");
 			chartOption.AddIndicator("Y", oiOption.MarketPrice, Color.Gray);
 			chartOption.AddIndicator("X", oiOption.Option.Expiration.AddDays(-oiOptionSim.CloseDTE).ToOADate(), Color.Gold);
+			chartOption.AddIndicator("X", exit.Timestamp.ToOADate(), Option.GetExitColor(status));
 		}
 
 		protected void btnReset_Click(object sender, EventArgs e)

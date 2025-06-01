@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StratSimV2", "StratSimV2\StratSimV2.csproj", "{322E62AE-A0A5-4C0A-8AF9-2AE29B16B1CB}"
 EndProject
@@ -15,12 +15,12 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{322E62AE-A0A5-4C0A-8AF9-2AE29B16B1CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{322E62AE-A0A5-4C0A-8AF9-2AE29B16B1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{322E62AE-A0A5-4C0A-8AF9-2AE29B16B1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{322E62AE-A0A5-4C0A-8AF9-2AE29B16B1CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322E62AE-A0A5-4C0A-8AF9-2AE29B16B1CB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{322E62AE-A0A5-4C0A-8AF9-2AE29B16B1CB}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{BBA75F18-5543-4B19-B31B-661E88F5575A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BBA75F18-5543-4B19-B31B-661E88F5575A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BBA75F18-5543-4B19-B31B-661E88F5575A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BBA75F18-5543-4B19-B31B-661E88F5575A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA75F18-5543-4B19-B31B-661E88F5575A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA75F18-5543-4B19-B31B-661E88F5575A}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
